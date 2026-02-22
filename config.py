@@ -1,8 +1,8 @@
 import os
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key-change-in-production'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///career_mentor.db'
+    SECRET_KEY = os.getenv("SECRET_KEY", "devkey123")
+    SQLALCHEMY_DATABASE_URI = "sqlite:///career_mentor.db"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ENGINE_OPTIONS = {
         'pool_size': 10,
