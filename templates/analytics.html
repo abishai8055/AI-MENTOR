@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-layout">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-brain"></i> AI Mentor Pro</h3>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('main.dashboard') }}" class="nav-item">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="{{ url_for('main.analyze') }}" class="nav-item">
+                <i class="fas fa-chart-bar"></i> Analysis
+            </a>
+            <a href="{{ url_for('main.interview') }}" class="nav-item">
+                <i class="fas fa-microphone"></i> Interview
+            </a>
+            <a href="{{ url_for('main.analytics') }}" class="nav-item active">
+                <i class="fas fa-chart-line"></i> Analytics
+            </a>
+            <a href="{{ url_for('main.chatbot') }}" class="nav-item">
+                <i class="fas fa-robot"></i> AI Chatbot
+            </a>
+            <a href="{{ url_for('main.portfolio') }}" class="nav-item">
+                <i class="fas fa-briefcase"></i> Portfolio
+            </a>
+            <a href="{{ url_for('auth.logout') }}" class="nav-item">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+    
+    <div class="main-content">
+        <div class="top-navbar">
+            <h2><i class="fas fa-chart-line"></i> Skill Growth Analytics</h2>
+        </div>
+        
+        <div class="analytics-grid">
+            <div class="analytics-card glass-card">
+                <h3><i class="fas fa-fire"></i> Learning Streak</h3>
+                <div class="streak-display">
+                    <span class="streak-number">{{ learning_streak }}</span>
+                    <span class="streak-label">Days</span>
+                </div>
+            </div>
+            
+            <div class="analytics-card glass-card">
+                <h3><i class="fas fa-target"></i> Skill Progress</h3>
+                <div class="progress-display">
+                    <div class="circular-progress">
+                        <svg width="120" height="120">
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="10"/>
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="#667eea" stroke-width="10" 
+                                    stroke-dasharray="{{ skill_progress.percentage * 3.14 }} 314" 
+                                    stroke-linecap="round" transform="rotate(-90 60 60)"/>
+                        </svg>
+                        <div class="progress-text">{{ skill_progress.percentage }}%</div>
+                    </div>
+                    <p>{{ skill_progress.current }} / {{ skill_progress.target }} Skills</p>
+                </div>
+            </div>
+            
+            <div class="analytics-card glass-card">
+                <h3><i class="fas fa-award"></i> Career Level</h3>
+                <div class="level-display">
+                    <div class="level-badge" style="background: {{ score_breakdown.color }}">
+                        {{ score_breakdown.level }}
+                    </div>
+                    <p>{{ score_breakdown.message }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="charts-section">
+            <div class="chart-card glass-card">
+                <h3><i class="fas fa-chart-bar"></i> Weekly Skill Growth</h3>
+                <canvas id="weeklyChart"></canvas>
+            </div>
+            
+            <div class="chart-card glass-card">
+                <h3><i class="fas fa-chart-area"></i> Skill Strength Radar</h3>
+                <canvas id="radarChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const weeklyCtx = document.getElementById('weeklyChart').getContext('2d');
+    new Chart(weeklyCtx, {
+        type: 'bar',
+        data: {
+            labels: {{ weekly_growth.labels | tojson }},
+            datasets: [{
+                label: 'Skills Added',
+                data: {{ weekly_growth.data | tojson }},
+                backgroundColor: 'rgba(102, 126, 234, 0.8)',
+                borderColor: 'rgba(102, 126, 234, 1)',
+                borderWidth: 2,
+                borderRadius: 10
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: { beginAtZero: true, ticks: { color: '#fff' }, grid: { color: 'rgba(255,255,255,0.1)' } },
+                x: { ticks: { color: '#fff' }, grid: { display: false } }
+            }
+        }
+    });
+    
+    const radarCtx = document.getElementById('radarChart').getContext('2d');
+    new Chart(radarCtx, {
+        type: 'radar',
+        data: {
+            labels: {{ skill_radar.labels | tojson }},
+            datasets: [{
+                label: 'Skill Strength',
+                data: {{ skill_radar.data | tojson }},
+                backgroundColor: 'rgba(102, 126, 234, 0.3)',
+                borderColor: 'rgba(102, 126, 234, 1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(102, 126, 234, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(102, 126, 234, 1)'
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: { color: '#fff', backdropColor: 'transparent' },
+                    grid: { color: 'rgba(255,255,255,0.1)' },
+                    pointLabels: { color: '#fff' }
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

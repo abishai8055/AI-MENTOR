@@ -1,0 +1,11 @@
+title,company,skills_required,description
+Software Engineering Intern,Google,"python, java, algorithms, data structures, git","Work on large-scale distributed systems and contribute to core infrastructure projects"
+Data Science Intern,Microsoft,"python, machine learning, sql, pandas, numpy, statistics","Analyze data and build predictive models for Azure cloud services"
+Frontend Developer Intern,Meta,"javascript, react, html, css, typescript","Build user interfaces for Facebook and Instagram web applications"
+Backend Developer Intern,Amazon,"java, spring boot, aws, sql, rest api","Develop scalable backend services for e-commerce platform"
+Machine Learning Intern,OpenAI,"python, tensorflow, pytorch, deep learning, nlp","Research and implement state-of-the-art ML models"
+Full Stack Intern,Netflix,"javascript, react, node.js, mongodb, express","Build features for streaming platform using MERN stack"
+DevOps Intern,Spotify,"docker, kubernetes, jenkins, aws, linux","Automate deployment pipelines and manage cloud infrastructure"
+Mobile Developer Intern,Apple,"swift, ios, xcode, mobile development","Develop iOS applications for iPhone and iPad"
+Cloud Engineer Intern,IBM,"aws, azure, terraform, python, docker","Design and implement cloud solutions for enterprise clients"
+AI Research Intern,DeepMind,"python, machine learning, research, mathematics","Conduct research in artificial intelligence and reinforcement learning"

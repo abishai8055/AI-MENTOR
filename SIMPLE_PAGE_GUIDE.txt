@@ -1,0 +1,361 @@
+================================================================================
+                   WHAT EACH WEB PAGE DOES - SIMPLE EXPLANATION
+================================================================================
+
+🏠 HOME PAGE
+================================================================================
+
+What You See:
+- Welcome message: "AI Career Mentor"
+- Tagline: "Your intelligent companion for career growth and skill development"
+- Three big buttons showing what the app can do
+- "Get Started" and "Login" buttons
+
+What It Does:
+- This is the first page you land on
+- Shows you what the app is all about
+- Lets you start your journey by clicking "Get Started"
+- Or click "Login" if you already have an account
+
+Why It's Important:
+- It's like the front door to the application
+- Gives you a quick overview before you dive in
+
+
+📝 REGISTER PAGE (Sign Up)
+================================================================================
+
+What You See:
+- A form with three fields:
+  1. Username (your unique name)
+  2. Email (your email address)
+  3. Password (your secret password)
+- A "Register" button
+- A link saying "Already have an account? Login here"
+
+What It Does:
+- Creates a new account for you
+- Checks if your email is already used (prevents duplicates)
+- Checks if your username is already taken
+- Saves your information securely (password is encrypted)
+- Congratulates you and sends you to the login page
+
+Why It's Important:
+- You need an account to use all the features
+- Your account keeps your resume and skills private
+- Only you can access your data
+
+
+🔑 LOGIN PAGE
+================================================================================
+
+What You See:
+- A form with two fields:
+  1. Email (the one you registered with)
+  2. Password (your secret password)
+- A "Login" button
+- A link saying "Don't have an account? Register here"
+
+What It Does:
+- Checks if your email exists in the system
+- Verifies your password is correct
+- If both match, logs you in and takes you to your Dashboard
+- If wrong, shows error message: "Invalid email or password"
+
+Why It's Important:
+- Keeps your account secure
+- Only lets you access your own data
+- Starts your session
+
+
+📊 DASHBOARD PAGE (Your Main Hub)
+================================================================================
+
+What You See:
+- Left sidebar with menu options:
+  • Dashboard (current page)
+  • Analysis (to see recommendations)
+  • Logout (to exit)
+  
+- Top greeting: "Welcome, [Your Name]!"
+
+- Three stat cards showing:
+  1. Total Skills (number of skills you have)
+  2. Resume Status (✓ if uploaded, ✗ if not)
+  3. Analysis Status (Ready to analyze)
+
+- Upload Resume Section:
+  • File picker to select PDF
+  • "Upload & Extract Skills" button
+
+- Add Skill Manually Section:
+  • Text field to type a skill
+  • "Add Skill" button
+
+- Your Skills List:
+  • Shows all skills you've added
+  • Each skill has an X button to delete it
+  • "Analyze & Get Recommendations" button (if you have skills)
+
+
+What It Does:
+================================================================================
+
+ACTION 1: Upload Resume
+- Click the file picker
+- Select your resume (must be PDF)
+- Click "Upload & Extract Skills"
+- The app reads your resume
+- Automatically finds all technical skills in it
+- Adds them to your skills list
+- Shows message like "Resume uploaded! Extracted 15 skills."
+
+ACTION 2: Add Skills Manually
+- Type a skill name (like "Python", "Excel", "Communication")
+- Click "Add Skill"
+- Skill appears in your list below
+- Shows message "Skill 'Python' added!"
+
+ACTION 3: View Your Skills
+- See all skills in badge format
+- Delete any skill by clicking the X button
+- Count how many skills you have (shown at top)
+
+ACTION 4: Start Analysis
+- Once you have 1+ skills, click "Analyze & Get Recommendations"
+- Takes you to Analysis page
+
+
+Why It's Important:
+- This is where you build your skill profile
+- You can upload resume OR add skills manually OR both
+- Having more skills = better recommendations
+- Clean interface to manage everything in one place
+
+
+💡 ANALYSIS PAGE (The Smart Recommendations)
+================================================================================
+
+What You See:
+- Top says: "Career Analysis"
+- Left sidebar (same as Dashboard)
+- Three Internship Cards (the TOP 3 RECOMMENDATIONS)
+
+For Each Internship:
+===============================
+
+1. HEADER SECTION
+   - Internship Title (job position name)
+   - Company Name (in a badge)
+
+2. MATCH SCORE
+   - A big circular number showing percentage (0-100%)
+   - This is how well your skills match this job
+   - 92% = Excellent match
+   - 65% = Good match
+   - 45% = Okay match
+
+3. INTERNSHIP DETAILS
+   - Description: What the internship is about
+   - Required Skills: What skills they need
+
+4. MISSING SKILLS (Red Badges)
+   - Skills you DON'T have but need for this job
+   - Example: [React] [Node.js] [MongoDB]
+
+5. 2-WEEK LEARNING ROADMAP
+   - A timeline showing you how to learn the missing skills
+   - Organized by week:
+
+   WEEK 1: Jan 1 - Jan 7
+   Skill: React
+   - Day 1: Learn React basics
+   - Day 2: Practice components
+   - Day 3: Practice props and state
+   - Day 4: Build first project
+   - Day 5: Learn hooks
+   - Day 6: Practice hooks
+   - Day 7: Complete mini-project
+   Resources: Udemy Course, React Official Docs, YouTube Tutorials
+
+   WEEK 2: Jan 8 - Jan 14
+   Skill: Node.js
+   - Day 1: Learn Node basics
+   - Day 2: Learn Express.js
+   - [continues with daily tasks...]
+   Resources: Codecademy, Udemy, Official Docs
+
+
+What It Does:
+================================================================================
+
+1. SHOWS TOP 3 INTERNSHIPS
+   - Ranks internships by how well you match
+   - Best match shown first
+
+2. TELLS YOU THE MATCH PERCENTAGE
+   - If you have Python, JavaScript, React
+   - And a job needs Python, JavaScript, React, Node.js, MongoDB
+   - Match = 60% (you have 3 out of 5)
+
+3. IDENTIFIES WHAT YOU'RE MISSING
+   - Shows exactly which skills you need to learn
+   - For that specific internship
+
+4. GIVES YOU A LEARNING PLAN
+   - Two-week schedule to learn missing skills
+   - Daily tasks to do
+   - Resources where to learn
+   - No more guessing what to learn or how!
+
+5. PRIORITIZES YOUR LEARNING
+   - Shows most important missing skills first
+   - You can focus on learning them in order
+
+
+Example Scenario:
+================================================================================
+
+You have skills: Python, SQL, Excel, Communication
+
+INTERNSHIP 1: Data Analyst at TechCorp
+- Match: 75%
+- Missing: Tableau, Power BI
+- Learning Roadmap: 2-week plan to learn Tableau & Power BI
+
+INTERNSHIP 2: Junior Developer at StartupXYZ
+- Match: 45%
+- Missing: JavaScript, React, Node.js, Git, MongoDB
+- Learning Roadmap: 2-week plan for top 3 skills
+
+INTERNSHIP 3: Financial Analyst at Bank
+- Match: 85%
+- Missing: VBA, Bloomberg Terminal
+- Learning Roadmap: 2-week plan to learn VBA & Bloomberg
+
+
+Why It's Important:
+- Shows you which internships fit you best
+- Tells you exactly what to learn
+- Gives you a step-by-step plan to learn it
+- Saves you weeks of research and guessing
+- Increases your chances of getting the internship
+
+
+🚪 LOGOUT
+================================================================================
+
+What You See:
+- A button that says "Logout"
+
+What It Does:
+- Closes your session
+- Takes you back to login page
+- Your data stays safe in the system
+
+Why It's Important:
+- Keeps your account secure
+- You can come back anytime and login again
+
+
+================================================================================
+                            COMPLETE USER FLOW
+================================================================================
+
+1. VISIT WEBSITE
+   ↓ (Land on Home Page)
+   ↓
+2. CLICK "GET STARTED" OR "LOGIN"
+   ↓
+3. CREATE ACCOUNT (Register Page)
+   └─ Enter username, email, password
+   └─ Account created
+   ↓
+4. LOGIN (Login Page)
+   └─ Enter email and password
+   └─ Logged in successfully
+   ↓
+5. GO TO DASHBOARD (Main Hub)
+   ↓
+6. CHOOSE ONE OR BOTH:
+   ├─ UPLOAD RESUME
+   │  └─ App reads it and finds skills automatically
+   │
+   └─ ADD SKILLS MANUALLY
+      └─ Type skills you have
+   ↓
+7. REVIEW YOUR SKILLS
+   └─ See all skills you added
+   └─ Delete any you don't want
+   ↓
+8. CLICK "ANALYZE"
+   ↓
+9. SEE ANALYSIS PAGE
+   └─ Top 3 internship matches
+   └─ Match percentage for each
+   └─ Missing skills for each
+   └─ 2-week learning plan for each
+   ↓
+10. PICK AN INTERNSHIP TO TARGET
+    └─ Follow the 2-week learning plan
+    └─ Learn the missing skills
+    └─ Get ready to apply!
+    ↓
+11. LOGOUT WHEN DONE
+
+
+================================================================================
+                        WHAT MAKES THIS APP SPECIAL
+================================================================================
+
+🧠 SMART MATCHING
+- Not just a keyword search
+- Uses artificial intelligence to understand skills
+- Finds your 3 best matching internships
+- Even if skills have different names
+
+🤖 AUTOMATIC SKILL DETECTION
+- Upload your resume
+- App reads it automatically
+- Finds all technical skills
+- No manual copying needed
+
+📅 PERSONALIZED LEARNING PLAN
+- Not generic tutorials
+- Specific to YOUR missing skills
+- Step-by-step daily tasks
+- 2-week timeline
+- Recommended resources for each task
+
+🔒 COMPLETELY PRIVATE
+- Only you can see your resume
+- Only you can see your skills
+- Your data is never shared
+- Secure password protection
+
+💯 EASY TO USE
+- Simple, clean interface
+- No confusing buttons
+- Clear instructions
+- Works on phone and computer
+
+
+================================================================================
+                          IN SIMPLE TERMS...
+================================================================================
+
+HOME PAGE        → "Welcome to AI Career Mentor"
+REGISTER PAGE    → "Create your account"
+LOGIN PAGE       → "Enter your account"
+DASHBOARD PAGE   → "Build your skill profile (upload resume or add skills)"
+ANALYSIS PAGE    → "See which internships match you + how to learn missing skills"
+LOGOUT           → "Exit your account"
+
+The whole app helps you:
+✓ Understand your current skills
+✓ Find internships that match you
+✓ See what skills you're missing
+✓ Get a 2-week plan to learn those skills
+✓ Get the internship!
+
+================================================================================

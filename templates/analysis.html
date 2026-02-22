@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-layout">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-brain"></i> AI Mentor</h3>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('main.dashboard') }}" class="nav-item">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="{{ url_for('main.analyze') }}" class="nav-item active">
+                <i class="fas fa-chart-bar"></i> Analysis
+            </a>
+            <a href="{{ url_for('auth.logout') }}" class="nav-item">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+    
+    <div class="main-content">
+        <div class="top-navbar">
+            <h2><i class="fas fa-chart-line"></i> Career Analysis</h2>
+        </div>
+        
+        <div class="analysis-container">
+            {% if analysis_data %}
+                {% for data in analysis_data %}
+                <div class="internship-section glass-card">
+                    <div class="internship-header">
+                        <h3>{{ data.internship.title }}</h3>
+                        <span class="company-badge">{{ data.internship.company }}</span>
+                    </div>
+                    
+                    <div class="match-percentage">
+                        <div class="progress-circle">
+                            <span class="percentage">{{ data.internship.match_percentage }}%</span>
+                        </div>
+                        <p>Match Score</p>
+                    </div>
+                    
+                    <div class="internship-details">
+                        <h4><i class="fas fa-clipboard-list"></i> Description</h4>
+                        <p>{{ data.internship.description }}</p>
+                        
+                        <h4><i class="fas fa-tools"></i> Required Skills</h4>
+                        <p>{{ data.internship.skills_required }}</p>
+                    </div>
+                    
+                    {% if data.gaps %}
+                    <div class="skill-gaps">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Missing Skills</h4>
+                        <div class="gap-badges">
+                            {% for gap in data.gaps %}
+                            <span class="gap-badge">{{ gap }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="roadmap-section">
+                        <h4><i class="fas fa-road"></i> 2-Week Learning Roadmap</h4>
+                        <div class="roadmap-timeline">
+                            {% for item in data.roadmap %}
+                            <div class="roadmap-item">
+                                <div class="roadmap-marker"></div>
+                                <div class="roadmap-content">
+                                    <h5>{{ item.skill }}</h5>
+                                    <p class="roadmap-week">{{ item.week }} ({{ item.start_date }} - {{ item.end_date }})</p>
+                                    <ul class="roadmap-tasks">
+                                        {% for task in item.tasks %}
+                                        <li>{{ task }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    <div class="roadmap-resources">
+                                        <strong>Resources:</strong>
+                                        {% for resource in item.resources %}
+                                        <span class="resource-tag">{{ resource }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="perfect-match">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Perfect Match! You have all required skills.</p>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            {% else %}
+            <div class="no-results glass-card">
+                <i class="fas fa-info-circle"></i>
+                <h3>No Recommendations Available</h3>
+                <p>Add more skills to get personalized internship recommendations.</p>
+                <a href="{{ url_for('main.dashboard') }}" class="btn-glow btn-primary-glow">Go to Dashboard</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

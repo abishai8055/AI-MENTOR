@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-layout">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-brain"></i> AI Mentor Pro</h3>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('main.dashboard') }}" class="nav-item active">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="{{ url_for('main.analyze') }}" class="nav-item">
+                <i class="fas fa-chart-bar"></i> Analysis
+            </a>
+            <a href="{{ url_for('main.interview') }}" class="nav-item">
+                <i class="fas fa-microphone"></i> Interview
+            </a>
+            <a href="{{ url_for('main.analytics') }}" class="nav-item">
+                <i class="fas fa-chart-line"></i> Analytics
+            </a>
+            <a href="{{ url_for('main.chatbot') }}" class="nav-item">
+                <i class="fas fa-robot"></i> AI Chatbot
+            </a>
+            <a href="{{ url_for('main.portfolio') }}" class="nav-item">
+                <i class="fas fa-briefcase"></i> Portfolio
+            </a>
+            <a href="{{ url_for('auth.logout') }}" class="nav-item">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+    
+    <div class="main-content">
+        <div class="top-navbar">
+            <h2>Welcome, {{ user.username }}!</h2>
+            <div class="career-score-badge">
+                <span class="score-label">Career Score:</span>
+                <span class="score-value">{{ user.career_score }}%</span>
+            </div>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="stat-card glass-card floating">
+                <div class="stat-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 class="counter" data-target="{{ skill_count }}">0</h3>
+                    <p>Total Skills</p>
+                </div>
+            </div>
+            
+            <div class="stat-card glass-card floating">
+                <div class="stat-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 class="counter" data-target="{{ user.career_score }}">0</h3>
+                    <p>Career Score</p>
+                </div>
+            </div>
+            
+            <div class="stat-card glass-card floating">
+                <div class="stat-icon">
+                    <i class="fas fa-microphone-alt"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 class="counter" data-target="{{ user.interview_score }}">0</h3>
+                    <p>Interview Score</p>
+                </div>
+            </div>
+            
+            <div class="stat-card glass-card floating">
+                <div class="stat-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>{% if user.resume_text %}✓{% else %}✗{% endif %}</h3>
+                    <p>Resume Status</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <div class="section-card glass-card">
+                <h3><i class="fas fa-upload"></i> Upload Resume</h3>
+                <form method="POST" action="{{ url_for('main.upload_resume') }}" enctype="multipart/form-data" class="upload-form">
+                    <input type="file" name="resume" accept=".pdf" class="form-control" required>
+                    <button type="submit" class="btn-glow btn-primary-glow">Upload & Extract Skills</button>
+                </form>
+            </div>
+            
+            <div class="section-card glass-card">
+                <h3><i class="fas fa-plus-circle"></i> Add Skill Manually</h3>
+                <form method="POST" action="{{ url_for('main.add_skill') }}" class="skill-form">
+                    <input type="text" name="skill_name" placeholder="e.g., Python, React, SQL" class="form-control" required>
+                    <button type="submit" class="btn-glow btn-primary-glow">Add Skill</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="skills-section">
+            <div class="section-card glass-card">
+                <h3><i class="fas fa-list"></i> Your Skills</h3>
+                <div class="skills-grid">
+                    {% for skill in skills %}
+                    <div class="skill-badge">
+                        <span>{{ skill.name }}</span>
+                        <a href="{{ url_for('main.delete_skill', skill_id=skill.id) }}" class="delete-skill">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if skill_count > 0 %}
+                <div class="action-buttons">
+                    <a href="{{ url_for('main.analyze') }}" class="btn-glow btn-primary-glow mt-3">
+                        <i class="fas fa-chart-line"></i> Get Recommendations
+                    </a>
+                    <a href="{{ url_for('main.interview') }}" class="btn-glow btn-secondary-glow mt-3">
+                        <i class="fas fa-microphone"></i> Practice Interview
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

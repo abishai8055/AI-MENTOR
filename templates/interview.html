@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-layout">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-brain"></i> AI Mentor Pro</h3>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('main.dashboard') }}" class="nav-item">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="{{ url_for('main.analyze') }}" class="nav-item">
+                <i class="fas fa-chart-bar"></i> Analysis
+            </a>
+            <a href="{{ url_for('main.interview') }}" class="nav-item active">
+                <i class="fas fa-microphone"></i> Interview
+            </a>
+            <a href="{{ url_for('main.analytics') }}" class="nav-item">
+                <i class="fas fa-chart-line"></i> Analytics
+            </a>
+            <a href="{{ url_for('main.chatbot') }}" class="nav-item">
+                <i class="fas fa-robot"></i> AI Chatbot
+            </a>
+            <a href="{{ url_for('main.portfolio') }}" class="nav-item">
+                <i class="fas fa-briefcase"></i> Portfolio
+            </a>
+            <a href="{{ url_for('auth.logout') }}" class="nav-item">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+    
+    <div class="main-content">
+        <div class="top-navbar">
+            <h2><i class="fas fa-microphone"></i> AI Interview Simulator</h2>
+        </div>
+        
+        {% if not started and not completed %}
+        <div class="interview-start glass-card">
+            <h3>Select Your Role</h3>
+            <form method="POST" action="{{ url_for('main.start_interview') }}">
+                <select name="role" class="form-control" required>
+                    <option value="">Choose a role...</option>
+                    <option value="Software Engineer">Software Engineer</option>
+                    <option value="Data Scientist">Data Scientist</option>
+                    <option value="Frontend Developer">Frontend Developer</option>
+                    <option value="Backend Developer">Backend Developer</option>
+                </select>
+                <button type="submit" class="btn-glow btn-primary-glow mt-3">Start Interview</button>
+            </form>
+        </div>
+        {% endif %}
+        
+        {% if started and not completed %}
+        <div class="interview-questions">
+            <form method="POST" action="{{ url_for('main.submit_interview') }}">
+                <input type="hidden" name="role" value="{{ role }}">
+                {% for q in questions %}
+                <div class="question-card glass-card">
+                    <h4>Question {{ loop.index }}</h4>
+                    <p class="question-text">{{ q.question }}</p>
+                    <textarea name="answer_{{ loop.index0 }}" class="form-control" rows="4" placeholder="Type your answer here..." required></textarea>
+                </div>
+                {% endfor %}
+                <button type="submit" class="btn-glow btn-primary-glow">Submit Interview</button>
+            </form>
+        </div>
+        {% endif %}
+        
+        {% if completed %}
+        <div class="interview-results">
+            <div class="result-header glass-card">
+                <h3>Interview Complete!</h3>
+                <div class="overall-score">
+                    <div class="score-circle">
+                        <span class="score-number">{{ overall_score }}%</span>
+                    </div>
+                    <p class="feedback">{{ feedback }}</p>
+                </div>
+            </div>
+            
+            <div class="detailed-scores glass-card">
+                <h4>Question-wise Scores</h4>
+                {% for q in questions %}
+                <div class="score-item">
+                    <div class="score-question">
+                        <strong>Q{{ loop.index }}:</strong> {{ q.question }}
+                    </div>
+                    <div class="score-bar-container">
+                        <div class="score-bar" style="width: {{ scores[loop.index0] }}%"></div>
+                        <span class="score-text">{{ scores[loop.index0] }}%</span>
+                    </div>
+                    <div class="user-answer">
+                        <strong>Your Answer:</strong> {{ answers[loop.index0] }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <a href="{{ url_for('main.interview') }}" class="btn-glow btn-primary-glow">Practice Again</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

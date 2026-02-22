@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-page">
+    <div class="container">
+        <div class="auth-container">
+            <div class="auth-card glass-card">
+                <div class="auth-header">
+                    <h2>Create Account</h2>
+                    <p>Start your AI-powered career journey</p>
+                </div>
+                
+                <form method="POST" class="auth-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Username</label>
+                        <input type="text" name="username" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+                    
+                    <button type="submit" class="btn-glow btn-primary-glow w-100">Register</button>
+                </form>
+                
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

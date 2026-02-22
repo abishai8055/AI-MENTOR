@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-layout">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-brain"></i> AI Mentor Pro</h3>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('main.dashboard') }}" class="nav-item">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="{{ url_for('main.analyze') }}" class="nav-item">
+                <i class="fas fa-chart-bar"></i> Analysis
+            </a>
+            <a href="{{ url_for('main.interview') }}" class="nav-item">
+                <i class="fas fa-microphone"></i> Interview
+            </a>
+            <a href="{{ url_for('main.analytics') }}" class="nav-item">
+                <i class="fas fa-chart-line"></i> Analytics
+            </a>
+            <a href="{{ url_for('main.chatbot') }}" class="nav-item active">
+                <i class="fas fa-robot"></i> AI Chatbot
+            </a>
+            <a href="{{ url_for('main.portfolio') }}" class="nav-item">
+                <i class="fas fa-briefcase"></i> Portfolio
+            </a>
+            <a href="{{ url_for('auth.logout') }}" class="nav-item">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+    
+    <div class="main-content">
+        <div class="top-navbar">
+            <h2><i class="fas fa-robot"></i> AI Career Assistant</h2>
+        </div>
+        
+        <div class="chatbot-container glass-card">
+            <div class="chat-header">
+                <div class="bot-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="bot-info">
+                    <h4>AI Career Mentor</h4>
+                    <p class="bot-status"><span class="status-dot"></span> Online</p>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <p>Hello! I'm your AI Career Assistant. Ask me about skills, interviews, internships, or career guidance!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <input type="text" id="chatInput" class="chat-input" placeholder="Type your message...">
+                <button onclick="sendMessage()" class="btn-send">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    
+    if (!message) return;
+    
+    const messagesContainer = document.getElementById('chatMessages');
+    
+    const userMsg = document.createElement('div');
+    userMsg.className = 'message user-message';
+    userMsg.innerHTML = `<div class="message-content"><p>${message}</p></div>`;
+    messagesContainer.appendChild(userMsg);
+    
+    input.value = '';
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    
+    fetch('/chat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message: message })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const botMsg = document.createElement('div');
+        botMsg.className = 'message bot-message';
+        botMsg.innerHTML = `<div class="message-content"><p>${data.response}</p></div>`;
+        messagesContainer.appendChild(botMsg);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    });
+}
+
+document.getElementById('chatInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
+</script>
+{% endblock %}

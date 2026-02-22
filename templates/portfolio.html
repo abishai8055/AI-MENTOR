@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-layout">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-brain"></i> AI Mentor Pro</h3>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('main.dashboard') }}" class="nav-item">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="{{ url_for('main.analyze') }}" class="nav-item">
+                <i class="fas fa-chart-bar"></i> Analysis
+            </a>
+            <a href="{{ url_for('main.interview') }}" class="nav-item">
+                <i class="fas fa-microphone"></i> Interview
+            </a>
+            <a href="{{ url_for('main.analytics') }}" class="nav-item">
+                <i class="fas fa-chart-line"></i> Analytics
+            </a>
+            <a href="{{ url_for('main.chatbot') }}" class="nav-item">
+                <i class="fas fa-robot"></i> AI Chatbot
+            </a>
+            <a href="{{ url_for('main.portfolio') }}" class="nav-item active">
+                <i class="fas fa-briefcase"></i> Portfolio
+            </a>
+            <a href="{{ url_for('auth.logout') }}" class="nav-item">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </nav>
+    </div>
+    
+    <div class="main-content">
+        <div class="top-navbar">
+            <h2><i class="fas fa-briefcase"></i> Portfolio Generator</h2>
+        </div>
+        
+        <div class="portfolio-section">
+            <div class="portfolio-header glass-card">
+                <h3>Your Professional Portfolio</h3>
+                <p>Preview your auto-generated portfolio website</p>
+                <a href="{{ url_for('main.download_portfolio') }}" class="btn-glow btn-primary-glow">
+                    <i class="fas fa-download"></i> Download HTML
+                </a>
+            </div>
+            
+            <div class="portfolio-preview glass-card">
+                <iframe srcdoc="{{ portfolio_preview }}" class="portfolio-iframe"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

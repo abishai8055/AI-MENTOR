@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="landing-page">
+    <div class="container">
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title floating">AI Career Mentor</h1>
+                <p class="hero-subtitle">Your intelligent companion for career growth and skill development</p>
+                <div class="hero-buttons">
+                    <a href="{{ url_for('auth.register') }}" class="btn-glow btn-primary-glow">Get Started</a>
+                    <a href="{{ url_for('auth.login') }}" class="btn-glow btn-secondary-glow">Login</a>
+                </div>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>Resume Analysis</h3>
+                    <p>Upload your resume and let AI extract your skills automatically</p>
+                </div>
+                
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Smart Matching</h3>
+                    <p>Get personalized internship recommendations using ML algorithms</p>
+                </div>
+                
+                <div class="feature-card glass-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Skill Gap Analysis</h3>
+                    <p>Identify missing skills and get a customized learning roadmap</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
